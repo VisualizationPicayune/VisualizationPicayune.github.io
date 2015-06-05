@@ -5,7 +5,7 @@ meta: "A picayune of D3"
 date: 2015-06-05 16:01:01 +05:00
 tags: D3 stark
 author: Christopher Michael Buck
-comments: true
+comments: false
 draft: false
 ---
 
