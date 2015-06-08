@@ -2,15 +2,15 @@
 layout: post
 title: "Making a Grid with Ticks"
 meta: "A picayune of D3"
-date: 2015-06-07 16:31:01 +05:00
+date: 2015-06-07 22:31:01 +05:00
 tags: D3 stark
 author: Christopher Michael Buck
-comments: true
-draft: true
+comments: false
+draft: false
 custom_js: ticks-and-grids
 ---
 
-An easy way to create grid lines with D3 is to use ticks, where the tick is the height of the plot for the x axis and the width of the plot for the y axis. Thusly:
+An easy way to create grid lines with D3 is to use axis ticks, where the tick is the height of the plot on the x axis and the width of the plot on the y axis. Thusly:
 
     var x_axis = d3.svg.axis()
         .tickSize(-plot_height)
@@ -21,7 +21,8 @@ An easy way to create grid lines with D3 is to use ticks, where the tick is the 
 		...
 
 TL;DR
-From the top. Given you have a SVG element created, perhaps, like this (see: [Centering a D3 Plot]({% post_url 2015-06-05-centering-a-plot %})):
+
+Given we have a SVG element created, perhaps, like this (see: [Centering a D3 Plot]({% post_url 2015-06-05-centering-a-plot %})):
 
     var total_width = 200
     var total_height = 160
@@ -36,52 +37,95 @@ From the top. Given you have a SVG element created, perhaps, like this (see: [Ce
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-The range of  (see: [Domain and Range]({% post_url 2015-06-06-domain-and-range %})):
-   var x = d3.scale.linear()
-        .range([0, plot_width]);
+And our data domain like this (see: [Domain and Range]({% post_url 2015-06-06-domain-and-range %})):
 
-    // Range is flipped because svg origin is at top (left).
+    var x = d3.scale.linear()
+        .range([0, plot_width])
+        .domain([1880, 2020])
+
+    // Range is flipped because SVG origin is at top (left).
     var y = d3.scale.linear()
-        .range([plot_height, 0]);
+        .range([plot_height, 0])
+        .domain([0, 40000])
         
-    x.domain([1880, 2020])
-    y.domain([0, 40000])
+Configure the axes, aka the grid:
+
+    var x_axis = d3.svg.axis()
+		.tickSize(-plot_height); // Re-purpose tick marks as vertical grid lines
+        .scale(x)
+        .orient("bottom")
+		.tickFormat("")    // Suppress labeling 
+
+    var y_axis = d3.svg.axis()
+		.tickSize(-plot_width);  // Re-purpose tick marks as horizontal grid lines
+        .scale(y)
+        .orient("left")
+		.tickFormat("")   // Suppress labeling
+
+Generate the SVG (draw the grid):
+
+    svg.append("g")
+        .attr("transform", "translate(0," + plot_height + ")")
+        .style("fill", "none")
+        .style("stroke", "black")
+        .call(x_axis)
+
+    svg.append("g")
+        .style("fill", "none")
+        .style("stroke", "black")
+        .call(y_axis)
+
+        
+<div id="viz" style="margin-bottom: 10px"></div>
 
 
-<div id="examples-1" style="margin-bottom: 10px"></div>
+Ta da. A grid.
 
+<script>
 
-And the CSS:
+    var total_width = 200
+    var total_height = 160
+	var margin = { top: 20, right: 20, left: 50, bottom: 30 }
+	var plot_width = total_width - margin.left - margin.right
+	var plot_height = total_height - margin.top - margin.bottom
 
+    var svg = d3.select("#viz")
+	  .append("svg")
+        .attr("width", total_width)
+        .attr("height", total_height)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-<style>
-.axis {
-   font: 10px sans-serif;
-}
+    var x = d3.scale.linear()
+        .range([0, plot_width])
+        .domain([1880, 2020])
 
-.axis path {
-    display: none;
-}
+    // Range is flipped because SVG origin is at top (left).
+    var y = d3.scale.linear()
+        .range([plot_height, 0])
+        .domain([0, 40000])
+        
+    var x_axis = d3.svg.axis()
+		.tickSize(-plot_height) // Re-purpose tick marks as vertical grid lines
+        .scale(x)
+        .orient("bottom")
+		.tickFormat("")    // Suppress labeling 
 
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
+    var y_axis = d3.svg.axis()
+		.tickSize(-plot_width)  // Re-purpose tick marks as horizontal grid lines
+        .scale(y)
+        .orient("left")
+		.tickFormat("")   // Suppress labeling
 
+    svg.append("g")
+        .attr("transform", "translate(0," + plot_height + ")")
+        .style("fill", "none")
+        .style("stroke", "black")
+        .call(x_axis)
 
-/* remove the path (outside box) */
-.no-line.y.axis path {
-    display: none;
-}
+    svg.append("g")
+        .style("fill", "none")
+        .style("stroke", "black")
+        .call(y_axis)
 
-.no-line.x.axis path {
-    display: none;
-}
-
-.line {
-  fill: none;
-  stroke: black;
-}
-
-</style>
+</script>
