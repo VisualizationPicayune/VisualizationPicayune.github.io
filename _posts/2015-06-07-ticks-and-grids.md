@@ -10,7 +10,7 @@ draft: false
 custom_js: ticks-and-grids
 ---
 
-An easy way to create grid lines with D3 is to use axis ticks, where the tick is the height of the plot on the x axis and the width of the plot on the y axis. Thusly:
+An easy way to create grid lines with D3 is to use axis ticks, making the tick the height of the plot on the x axis and the width of the plot on the y axis. Thusly:
 
     var x_axis = d3.svg.axis()
         .tickSize(-plot_height)
