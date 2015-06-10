@@ -1,4 +1,16 @@
 <head>
+<script>
+  {% if site.enforce_ssl %}
+  <!--
+    redirect users to the https version of the website.
+    but: only check when on the production domain, as set in _config.yml.
+   -->
+  <script type="text/javascript">
+    var enforce = "{{ site.enforce_ssl }}";
+    if ((enforce == window.location.host) && (window.location.protocol != "https:"))
+      window.location.protocol = "https";
+  </script>
+  {% endif %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +23,9 @@
   
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-  <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  <script src="/javascript/d3/d3.min.js"></script>
+
   {% if page.custom_css %}
   {% for stylesheet in page.custom_css %}
   <link rel="stylesheet" href="/css/{{ stylesheet }}.css" media="screen" type="text/css">
