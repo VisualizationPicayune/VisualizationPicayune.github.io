@@ -23,7 +23,7 @@ var data = {
   ]
 }
 
-var url = "https://github.com/repos/butterwell/github-issue-test/issues"
+var url = "https://api.github.com/repos/butterwell/github-issue-test/issues"
 d3.json(url).post(data, function(a,b) {
     console.log(a)
     console.log(b)
@@ -31,4 +31,4 @@ d3.json(url).post(data, function(a,b) {
 
 
 
-</script>
+</script>gi
