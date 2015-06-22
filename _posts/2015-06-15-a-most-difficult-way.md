@@ -13,7 +13,6 @@ This work would not have been possible without the works of Zed Shaw and Marijn 
 
 I can say that without their work this work would have be exceedingly unlikely to the point that someone else, in a different universe, perhaps where brass and steam ruled, is where this was written.  Go. Buy. Eliquant Jav  --- Esxx.  Both works are available on the Internet. But buy the books. Really.
 
-
 0 Where we set your expectations of success very low.
 
 "You are a fluke of the universe. You have no right to be here. Wether you know it or not, the universe is laughing behind your back." --
@@ -31,4 +30,4 @@ Start typing. Here:
 
 3 Where I admit I'm actually making this far too easy on you.
  
-4 
+4 Where you realize that even though I'm making it easier, it's still most difficult.

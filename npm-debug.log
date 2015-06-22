@@ -1,0 +1,238 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Users\\chris\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'scuttlebot' ]
+2 info using npm@2.1.10
+3 info using node@v0.10.33
+4 silly cache add args [ 'scuttlebot', null ]
+5 verbose cache add spec scuttlebot
+6 silly cache add parsed spec { raw: 'scuttlebot',
+6 silly cache add   scope: null,
+6 silly cache add   name: 'scuttlebot',
+6 silly cache add   rawSpec: '',
+6 silly cache add   spec: '*',
+6 silly cache add   type: 'range' }
+7 verbose addNamed scuttlebot@*
+8 silly addNamed semver.valid null
+9 silly addNamed semver.validRange *
+10 silly addNameRange { name: 'scuttlebot', range: '*', hasData: false }
+11 silly mapToRegistry name scuttlebot
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/scuttlebot
+15 verbose addNameRange registry:https://registry.npmjs.org/scuttlebot not in flight; fetching
+16 verbose request uri https://registry.npmjs.org/scuttlebot
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 07:37:28
+19 verbose request id ef44b42aace222d5
+20 http request GET https://registry.npmjs.org/scuttlebot
+21 http 200 https://registry.npmjs.org/scuttlebot
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"J5L5CFQ7M19VBXDL8PJQDA7R"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'cache-control': 'max-age=60',
+22 silly get     'content-length': '113289',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Thu, 11 Jun 2015 11:37:29 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '0',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-iad2120-IAD',
+22 silly get     'x-cache': 'MISS',
+22 silly get     'x-cache-hits': '0',
+22 silly get     'x-timer': 'S1434022649.079261,VS0,VE652',
+22 silly get     vary: 'Accept' } ]
+23 silly addNameRange number 2 { name: 'scuttlebot', range: '*', hasData: true }
+24 silly addNameRange versions [ 'scuttlebot',
+24 silly addNameRange   [ '0.1.0',
+24 silly addNameRange     '0.1.1',
+24 silly addNameRange     '0.1.2',
+24 silly addNameRange     '0.2.0',
+24 silly addNameRange     '0.2.1',
+24 silly addNameRange     '0.2.2',
+24 silly addNameRange     '0.3.0',
+24 silly addNameRange     '0.3.1',
+24 silly addNameRange     '0.3.2',
+24 silly addNameRange     '0.4.0',
+24 silly addNameRange     '1.0.0',
+24 silly addNameRange     '1.0.1',
+24 silly addNameRange     '1.1.0',
+24 silly addNameRange     '1.2.0',
+24 silly addNameRange     '1.2.1',
+24 silly addNameRange     '1.2.2',
+24 silly addNameRange     '2.0.0',
+24 silly addNameRange     '2.0.1',
+24 silly addNameRange     '2.0.2',
+24 silly addNameRange     '2.0.3',
+24 silly addNameRange     '2.0.4',
+24 silly addNameRange     '2.0.5',
+24 silly addNameRange     '2.0.6',
+24 silly addNameRange     '2.0.7',
+24 silly addNameRange     '2.1.0',
+24 silly addNameRange     '2.1.1',
+24 silly addNameRange     '2.1.2',
+24 silly addNameRange     '2.1.3',
+24 silly addNameRange     '2.1.4',
+24 silly addNameRange     '2.1.5',
+24 silly addNameRange     '2.1.6',
+24 silly addNameRange     '2.1.7',
+24 silly addNameRange     '2.1.8',
+24 silly addNameRange     '2.1.9',
+24 silly addNameRange     '2.1.10',
+24 silly addNameRange     '2.1.11',
+24 silly addNameRange     '2.2.0',
+24 silly addNameRange     '2.2.1',
+24 silly addNameRange     '2.2.2',
+24 silly addNameRange     '2.3.0',
+24 silly addNameRange     '2.3.1',
+24 silly addNameRange     '2.3.2',
+24 silly addNameRange     '2.3.3',
+24 silly addNameRange     '2.3.4',
+24 silly addNameRange     '2.3.5',
+24 silly addNameRange     '3.0.0',
+24 silly addNameRange     '3.0.1',
+24 silly addNameRange     '3.0.2',
+24 silly addNameRange     '4.0.0',
+24 silly addNameRange     '4.0.1',
+24 silly addNameRange     '4.0.2',
+24 silly addNameRange     '4.0.3',
+24 silly addNameRange     '4.0.4',
+24 silly addNameRange     '4.0.5',
+24 silly addNameRange     '4.1.0',
+24 silly addNameRange     '4.1.1',
+24 silly addNameRange     '4.2.0',
+24 silly addNameRange     '4.2.1',
+24 silly addNameRange     '4.2.2',
+24 silly addNameRange     '4.2.3' ] ]
+25 verbose addNamed scuttlebot@4.2.3
+26 silly addNamed semver.valid 4.2.3
+27 silly addNamed semver.validRange 4.2.3
+28 silly mapToRegistry name scuttlebot
+29 silly mapToRegistry using default registry
+30 silly mapToRegistry registry https://registry.npmjs.org/
+31 silly mapToRegistry uri https://registry.npmjs.org/scuttlebot
+32 verbose addRemoteTarball https://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz not in flight; adding
+33 verbose addRemoteTarball [ 'https://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz',
+33 verbose addRemoteTarball   'bb652fa70fbb75fccc554307f73dee87326d8b24' ]
+34 info retry fetch attempt 1 at 07:37:29
+35 info attempt registry request try #1 at 07:37:29
+36 http fetch GET https://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz
+37 http fetch 200 https://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz
+38 silly fetchAndShaCheck shasum bb652fa70fbb75fccc554307f73dee87326d8b24
+39 verbose addTmpTarball C:\Users\chris\AppData\Local\Temp\npm-9268-64eb0cb6\registry.npmjs.org\scuttlebot\-\scuttlebot-4.2.3.tgz not in flight; adding
+40 verbose addTmpTarball already have metadata; skipping unpack for scuttlebot@4.2.3
+41 silly cache afterAdd scuttlebot@4.2.3
+42 verbose afterAdd C:\Users\chris\AppData\Roaming\npm-cache\scuttlebot\4.2.3\package\package.json not in flight; writing
+43 verbose afterAdd C:\Users\chris\AppData\Roaming\npm-cache\scuttlebot\4.2.3\package\package.json written
+44 silly install resolved [ { name: 'scuttlebot',
+44 silly install resolved     description: 'A bot-server for the phoenix network',
+44 silly install resolved     version: '4.2.3',
+44 silly install resolved     homepage: 'https://github.com/pfraze/scuttlebot',
+44 silly install resolved     repository: { type: 'git', url: 'git://github.com/pfraze/scuttlebot.git' },
+44 silly install resolved     dependencies:
+44 silly install resolved      { 'broadcast-stream': '~0.0.0',
+44 silly install resolved        cont: '~1.0.3',
+44 silly install resolved        daemonize2: '0.4.2',
+44 silly install resolved        'level-memview': '~0.0.0',
+44 silly install resolved        minimist: '~1.1.0',
+44 silly install resolved        mkdirp: '~0.5.0',
+44 silly install resolved        multicb: '^1.0.0',
+44 silly install resolved        muxrpc: '~4.0.0',
+44 silly install resolved        nomnom: '1.8.0',
+44 silly install resolved        osenv: '~0.1.0',
+44 silly install resolved        'pull-cat': '~1.1.5',
+44 silly install resolved        'pull-many': '~1.0.5',
+44 silly install resolved        'pull-pushable': '~1.1.4',
+44 silly install resolved        'pull-serializer': '~0.3.1',
+44 silly install resolved        'pull-stream': '~2.26.0',
+44 silly install resolved        'pull-stream-to-stream': '~1.3.0',
+44 silly install resolved        'pull-stringify': '~1.2.2',
+44 silly install resolved        'pull-ws-server': '~1.3.1',
+44 silly install resolved        'secure-scuttlebutt': '~10.1.0',
+44 silly install resolved        'ssb-keys': '~0.6.1',
+44 silly install resolved        'ssb-msgs': '~3.0.0',
+44 silly install resolved        'ssbplug-phoenix': '~4.5.0',
+44 silly install resolved        'stream-to-pull-stream': '~1.6.0',
+44 silly install resolved        'explain-error': '~1.0.1',
+44 silly install resolved        'map-merge': '~1.1.0',
+44 silly install resolved        multiblob: '~1.4.1',
+44 silly install resolved        'bash-color': '~0.0.3',
+44 silly install resolved        'pull-inactivity': '~2.1.1',
+44 silly install resolved        graphmitter: '~1.3.0',
+44 silly install resolved        'non-private-ip': '~1.1.0',
+44 silly install resolved        ip: '~0.3.2',
+44 silly install resolved        'ssb-config': '~1.0.0',
+44 silly install resolved        connect: '~3.3.4',
+44 silly install resolved        'mynosql-query': '~1.0.0' },
+44 silly install resolved     devDependencies:
+44 silly install resolved      { rimraf: '~2.2.8',
+44 silly install resolved        tape: '~4.0.0',
+44 silly install resolved        'level-test': '~1.6.6',
+44 silly install resolved        'deep-equal': '~0.2.1',
+44 silly install resolved        'level-sublevel': '~6.3.15',
+44 silly install resolved        'ssb-msg-schemas': '~3.1.0' },
+44 silly install resolved     bin: { sbot: './bin.js' },
+44 silly install resolved     scripts: { test: 'set -e; for t in test/*.js; do node $t; done' },
+44 silly install resolved     author: { name: 'Paul Frazee', email: 'pfrazee@gmail.com' },
+44 silly install resolved     license: 'MIT',
+44 silly install resolved     gitHead: 'a8dff80fffd2f4ef779c6787b4dca42d50a86362',
+44 silly install resolved     bugs: { url: 'https://github.com/pfraze/scuttlebot/issues' },
+44 silly install resolved     _id: 'scuttlebot@4.2.3',
+44 silly install resolved     _shasum: 'bb652fa70fbb75fccc554307f73dee87326d8b24',
+44 silly install resolved     _from: 'scuttlebot@*',
+44 silly install resolved     _npmVersion: '1.4.28',
+44 silly install resolved     _npmUser: { name: 'pfraze', email: 'pfrazee@gmail.com' },
+44 silly install resolved     maintainers: [ [Object], [Object] ],
+44 silly install resolved     dist:
+44 silly install resolved      { shasum: 'bb652fa70fbb75fccc554307f73dee87326d8b24',
+44 silly install resolved        tarball: 'http://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz' },
+44 silly install resolved     directories: {},
+44 silly install resolved     _resolved: 'https://registry.npmjs.org/scuttlebot/-/scuttlebot-4.2.3.tgz' } ]
+45 info install scuttlebot@4.2.3 into c:\Program Files\nodejs
+46 info installOne scuttlebot@4.2.3
+47 verbose installOne of scuttlebot to c:\Program Files\nodejs not in flight; installing
+48 verbose lock using C:\Users\chris\AppData\Roaming\npm-cache\_locks\scuttlebot-334db6fb1acc1f84.lock for c:\Program Files\nodejs\node_modules\scuttlebot
+49 silly install write writing scuttlebot 4.2.3 to c:\Program Files\nodejs\node_modules\scuttlebot
+50 silly cache addNamed cb scuttlebot@4.2.3
+51 verbose unbuild node_modules\scuttlebot
+52 verbose gentlyRm vacuuming c:\Program Files\nodejs\node_modules\scuttlebot
+53 verbose tar unpack C:\Users\chris\AppData\Roaming\npm-cache\scuttlebot\4.2.3\package.tgz
+54 verbose tar unpacking to c:\Program Files\nodejs\node_modules\scuttlebot
+55 verbose gentlyRm vacuuming c:\Program Files\nodejs\node_modules\scuttlebot
+56 silly gunzTarPerm modes [ '777', '666' ]
+57 error tar.unpack untar error C:\Users\chris\AppData\Roaming\npm-cache\scuttlebot\4.2.3\package.tgz
+58 verbose unlock done using C:\Users\chris\AppData\Roaming\npm-cache\_locks\scuttlebot-334db6fb1acc1f84.lock for c:\Program Files\nodejs\node_modules\scuttlebot
+59 verbose fstream_path c:\Program Files\nodejs\node_modules\scuttlebot
+60 verbose fstream_type Directory
+61 verbose fstream_class DirWriter
+62 verbose stack Error: EPERM, mkdir 'c:\Program Files\nodejs\node_modules\scuttlebot'
+63 verbose fstream_stack c:\Users\chris\AppData\Roaming\npm\node_modules\npm\node_modules\fstream\lib\dir-writer.js:36:23
+63 verbose fstream_stack c:\Users\chris\AppData\Roaming\npm\node_modules\npm\node_modules\mkdirp\index.js:46:53
+63 verbose fstream_stack Object.oncomplete (fs.js:107:15)
+64 verbose cwd c:\Users\chris\Google Drive\github\Butterwell.github.io
+65 error Windows_NT 6.2.9200
+66 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Users\\chris\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "scuttlebot"
+67 error node v0.10.33
+68 error npm  v2.1.10
+69 error path c:\Program Files\nodejs\node_modules\scuttlebot
+70 error code EPERM
+71 error errno 50
+72 error Error: EPERM, mkdir 'c:\Program Files\nodejs\node_modules\scuttlebot'
+72 error  { [Error: EPERM, mkdir 'c:\Program Files\nodejs\node_modules\scuttlebot']
+72 error   errno: 50,
+72 error   code: 'EPERM',
+72 error   path: 'c:\\Program Files\\nodejs\\node_modules\\scuttlebot',
+72 error   fstream_type: 'Directory',
+72 error   fstream_path: 'c:\\Program Files\\nodejs\\node_modules\\scuttlebot',
+72 error   fstream_class: 'DirWriter',
+72 error   fstream_stack:
+72 error    [ 'c:\\Users\\chris\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\fstream\\lib\\dir-writer.js:36:23',
+72 error      'c:\\Users\\chris\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\mkdirp\\index.js:46:53',
+72 error      'Object.oncomplete (fs.js:107:15)' ] }
+73 error Please try running this command again as root/Administrator.
+74 verbose exit [ 50, true ]
+75 verbose unbuild node_modules\scuttlebot
+76 verbose gentlyRm vacuuming c:\Program Files\nodejs\node_modules\scuttlebot

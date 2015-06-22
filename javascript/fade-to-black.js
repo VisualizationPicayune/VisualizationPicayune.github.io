@@ -3,57 +3,69 @@
 // Plot maximal ...
 // When does the grid become foreground?
 
-
-var grid_strokes = [ "black", "lightgray", "darkgray", "white" ]
-var grid_opacities = [ 0.7, 0.5, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.02, 0.01 ]
-var background_colors = grid_strokes
-var line_colors = grid_strokes
+var grays = [ "black", "lightgray", "darkgray", "white" ]
+var opacities = [ 1.0, 0.4, 0.2, 0.1 ]
 
 
-var tests = [[
+var tests = [
 { stroke: "black", opacity: 1.0, background: "white" },
 { stroke: "black", opacity: 0.5, background: "white" },
 { stroke: "black", opacity: 0.2, background: "white" },
-{ stroke: "black", opacity: 0.01, background: "white" }
-],[
+{ stroke: "black", opacity: 0.01, background: "white" },
 { stroke: "black", opacity: 0.25, background: "white" },
 { stroke: "black", opacity: 0.2, background: "white" },
 { stroke: "black", opacity: 0.15, background: "white" },
-{ stroke: "black", opacity: 0.1, background: "white" }
-],[
+{ stroke: "black", opacity: 0.1, background: "white" },
 { stroke: "black", opacity: 1.0, background: "lightgray" },
 { stroke: "black", opacity: 0.5, background: "lightgray" },
 { stroke: "black", opacity: 0.2, background: "lightgray" },
-{ stroke: "black", opacity: 0.01, background: "lightgray" }
-],[
+{ stroke: "black", opacity: 0.01, background: "lightgray" },
 { stroke: "black", opacity: 0.25, background: "lightgray" },
 { stroke: "black", opacity: 0.2, background: "lightgray" },
 { stroke: "black", opacity: 0.15, background: "lightgray" },
-{ stroke: "black", opacity: 0.1, background: "lightgray" }
-],[
+{ stroke: "black", opacity: 0.1, background: "lightgray" },
 { stroke: "black", opacity: 1.0, background: "darkgray" },
 { stroke: "black", opacity: 0.5, background: "darkgray" },
 { stroke: "black", opacity: 0.2, background: "darkgray" },
-{ stroke: "black", opacity: 0.01, background: "darkgray" }
-],[
+{ stroke: "black", opacity: 0.01, background: "darkgray" },
 { stroke: "black", opacity: 0.25, background: "darkgray" },
 { stroke: "black", opacity: 0.2, background: "darkgray" },
 { stroke: "black", opacity: 0.15, background: "darkgray" },
 { stroke: "black", opacity: 0.1, background: "darkgray" }
-]]
+]
+
+
+var variables = [
+["Grid Opacity", opacities],
+["Background", grays]
+]
+
+variables.forEach(function(d) { console.log(d[0], d[1]) })
 
 
 d3.json("../../../Joseph.json", function(error, name_data) {
-    [1, 2, 3, 4, 5, 6].forEach(function(data,i) {
-        var div = d3.select("#examples-"+data)
-        examples(div, tests[i], name_data)
+    var div = d3.select("#examples")
+    examples(div, tests, name_data)
+    var svg = d3.select("#viz")
+        .append('svg')
+        .
+    samples({
+        svg: svg,
+        variables: variables,
+        data: name_data
     })
 })
 
+function samples(p) {
+
+}
+    
+// Make all as one.
 
 function examples(parent, tests, name_data) {
-    var width = 180
+    var width = 170
     var height = 160
+    
 
 	tests.forEach(function(data, i) {
         var grid = parent
@@ -63,8 +75,10 @@ function examples(parent, tests, name_data) {
                 height: height + 'px',
                 display: 'inline-block',
                 background: data.background,
-                "border-radius": '20px',
-                "box-shadow": "0 0 5px #eee"
+                "border-radius": '8px',
+                "box-shadow": "0 0 5px #eee",
+                "margin-right": '8px',
+                "margin-bottom": '8px'
             });
 
     var svg = grid_1({
@@ -90,7 +104,6 @@ function examples(parent, tests, name_data) {
       .style('margin-top', "-28px")
 
     });
-	
 
 }
 
@@ -150,3 +163,33 @@ function grid_1(options, data) {
         .attr("d", line);
     return svg
 }
+
+
+function svg_gen(where, attr) {
+    var viz = d3.select(where)
+    
+    var svg = viz.append("svg")
+         .attr(attr)
+         
+    return svg
+}
+
+// TODO Call this with styling to apply.
+function append_line_graph(svg, x_axis, y_axis, styles, data) {
+  
+    svg.append("g")
+        .attr("transform", "translate(" + right + "," + down + height + ")")
+        .call(x_axis);
+    
+    svg.append("g")
+        .attr("transform", "translate(" + right + "," + down + ")")
+        .call(y_axis);
+
+    svg.append("path")
+        .datum(data)
+        .attr("transform", "translate(" + right + "," + down + ")")
+        .attr("d", line);
+    return svg
+}
+
+
