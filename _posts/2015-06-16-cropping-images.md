@@ -12,6 +12,10 @@ custom_js:
  - color_distances
 ---
 
+How to crop images depends on what you're going to do with them.  If you're simply going to display part of one, 
+
+Two cases: when it's yours and ...
+
 For an upcoming graph reproduction I wanted to display part of a image The 
 You've got an image and y
 Given that you've l
