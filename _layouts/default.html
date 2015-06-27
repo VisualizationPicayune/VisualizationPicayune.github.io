@@ -3,8 +3,29 @@
 
   {% include head.html %}
 
-  <body>
+  <body class="hidden">
+    <script>
+    var header_font = new FontFace('plainblackwidenormal', "url('/fonts/plainblackwide_normal_macroman/Plain_Black_Wide-webfont.woff') format('woff')")
+    header_font.load()
+        .then(function(loaded_face) {
+            document.fonts.add(loaded_face)
+            document.body.className = 'reveal'
+            //d3.select("body").classed({ hidden: false, reveal: true })
+        })
+        .catch(function(e) {
+            // This is where to load backup fonts from the list below
+            console.log(e)
+            document.body.className = 'reveal'
+            //d3.select("body").classed({ hidden: false, reveal: true })
+        })        
 
+        //font-family: 'plainblacknormal';
+        //src: url('Plain_Black-webfont.eot');
+        //src: url('Plain_Black-webfont.eot?#iefix') format('embedded-opentype'),
+        //     url('Plain_Black-webfont.woff') format('woff'),
+        //     url('Plain_Black-webfont.ttf') format('truetype'),
+        //     url('Plain_Black-webfont.svg#plainblacknormal') format('svg');
+    </script>
     {% include header.html %}
 
     <div class="page-content">
@@ -15,7 +36,6 @@
 
     {% include footer.html %}
 	{% include google_analytics.html %}
-
   </body>
 
 </html>
