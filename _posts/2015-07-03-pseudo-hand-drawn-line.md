@@ -1,19 +1,29 @@
 ---
 layout: post
-title: "Approximation of a Hand-Drawn Line"
+title: "Pseudo Hand-Drawn Line"
 meta: "A p of JavaScript and SVG"
-date: 2015-06-20 15:01:01 +05:00
+date: 2015-07-03 15:01:01 +05:00
 tags: JavaScript
 author: Christopher Michael Buck
 comments: false
 draft: true
 custom_js:
  - image_util
- - color_distances
  - svg_gen
 ---
 
 First pass: a straight line.
+
+Problem? It's too straight.
+
+Second pass: a random line.
+
+A hand-drawn --
+
+We need a hand-drawn line detector. An objective measurement as to how close we are.
+[A Hand-Drawn Line Detector]()
+
+Third pass: blot, pull, tail.
 
 
 <div id="viz"></div>
