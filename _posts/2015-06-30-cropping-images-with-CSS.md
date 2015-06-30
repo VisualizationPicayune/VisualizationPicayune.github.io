@@ -29,4 +29,4 @@ The same technique that is used for CSS sprites can be used to display part of a
     display: inline-block;
 "></a>
 ~~~
-Height and width specify the size of the crop, and background-position here shifts the image left and up. Think of which pixel you want in the upper left corner of the crop.
+Height and width specify the size of the crop, and background-position above shifts the image left and up. Think of which pixel you want in the upper left corner of the crop.
