@@ -38,7 +38,7 @@
     }
 
     
-    function gen_count_function(start) {
+    image_util.gen_count_function = function(start) {
         var s = start || 0
         var count = -1
         return {
@@ -49,12 +49,11 @@
         }
     }
     
-    var test_count_function = gen_count_function(10)
-    
     tests.push(function() { return [ "true", true ] })
-    tests.push(function() { return [ "true", false ] })
     tests.push(function() {
-        return [ "turn up to 11", test_count_function.next === 11 ]
+        var test_count_function = image_util.gen_count_function(10)
+        test_count_function.next()
+        return [ "turn up to 11", test_count_function.next() === 11 ]
     })
     
     /*
@@ -215,6 +214,7 @@ img.src = url;
                 failed.push(r)
             }
         })
+        return failed
     }
     if (typeof define === "function" && define.amd) define(image_util); else if (typeof module === "object" && module.exports) module.exports = image_util
     this.image_util = image_util
