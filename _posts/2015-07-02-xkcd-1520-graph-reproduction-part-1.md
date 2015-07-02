@@ -83,7 +83,7 @@ var y = d3.scale.linear()
     .range([118, 0])  // Reversed because SVG origin is upper left and our plot origin is bottom left
 </script>
 
-Let's plot our line as gray over the original plot. See () about SVG overlays and D3 overplots. Given the above here's the rest of the code to plot our reproduction so far (the estimates):
+Let's plot our line as gray over the original plot. See [A SVG Overplot]({% post_url 2015-07-02-a-svg-overplot %}) about SVG overlays and, by extension, D3 over-plots. Given the above here's the rest of the code to plot our reproduction so far (the estimates):
 
     var where = "#viz"
     
