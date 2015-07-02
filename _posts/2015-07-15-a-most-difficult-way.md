@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learning Exquisite JavaScript and D3 a Most Difficult Way"
+title: "A Most Difficult Way to Learn JavaScript and D3"
 meta: "With nods to Zed Shaw and Marijn Haverbeke"
 date: 2015-07-15 12:01:01 +05:00
 tags: D3
