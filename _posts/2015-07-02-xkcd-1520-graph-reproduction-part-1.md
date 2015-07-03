@@ -3,7 +3,7 @@ layout: post
 title: "Infectious Diseases, a Reproduction - part 1"
 meta: "The first in a series of reproductions in D3."
 date: 2015-07-02 17:59:01 +05:00
-updated: 2015-07-03 12:00:00 +05:00
+updated: 2015-07-03 10:30:00 +05:00
 tags: D3 Reproduction XKCD
 author: Christopher Michael Buck
 comments: false

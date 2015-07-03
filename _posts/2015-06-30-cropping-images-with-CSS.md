@@ -3,7 +3,7 @@ layout: post
 title: "Cropping Images with CSS"
 meta: "A Picayune of JavaScript"
 date: 2015-06-30 11:57:01 +05:00
-updated: 2015-07-03 12:00:00 +05:00
+updated: 2015-07-03 10:30:00 +05:00
 tags: JavaScript
 author: Christopher Michael Buck
 comments: false
