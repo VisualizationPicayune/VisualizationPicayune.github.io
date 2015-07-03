@@ -3,20 +3,22 @@ layout: post
 title: "Infectious Diseases, a Reproduction - part 1"
 meta: "The first in a series of reproductions in D3."
 date: 2015-07-02 17:59:01 +05:00
+updated: 2015-07-03 12:00:00 +05:00
 tags: D3 Reproduction XKCD
 author: Christopher Michael Buck
 comments: false
 draft: false
 ---
 
-How difficult would it be to reproduce this graph from XKCD 1520 in D3?
+How difficult would it be to reproduce this graph from [XKCD 1520](https://xkcd.com/1520/) in D3?
 
-<a href="https://xkcd.com/1520/" 
-style="display: inline-block;
-height: 170px;
-width: 204px;
-background: url(../../../../degree_off.png);
-background-position: -392px -4px;"></a><a href="https://xkcd.com/license.html">used under license</a>
+<div style="
+    display: inline-block;
+    height: 170px;
+    width: 204px;
+    background: url(../../../../degree_off.png);
+    background-position: -392px -4px;
+"></div>[XKCD license](http://xkcd.com/license.html)
 
 (Cropped with CSS. See [Cropping Images with CSS]({% post_url 2015-06-30-cropping-images-with-CSS %}) for an explanation of CSS cropping.)
 
@@ -52,12 +54,13 @@ From observation we know the x domain is linear between 1900 to 2000: the 1900, 
 
 Using the same CSS cropping, here's the graph line:
 
-<a href="https://xkcd.com/1520/" 
-style="display: inline-block;
-height: 118px;
-width: 184px;
-background: url(../../../../degree_off.png);
-background-position: -411px -26px;"></a><a href="https://xkcd.com/license.html">A</a>
+<div style="
+    display: inline-block;
+    height: 118px;
+    width: 184px;
+    background: url(../../../../degree_off.png);
+    background-position: -411px -26px;
+"></div>
 
 To simplify matters we are making the reproduction the same scale as the original graph. Thus the x range is the same as the pixel width of the line (and the box): 184. The height, and therefore the y range, of the box and line is 118.
 
@@ -124,13 +127,13 @@ function plot(where) {
 </script>
 
 <div style="position: relative; height: 124px;">
-  <div
-style="display: inline-block;
-height: 118px;
-width: 184px;
-background: url(../../../../degree_off.png);
-background-position: -411px -26px;
-position: absolute;
+  <div style="
+    display: inline-block;
+    height: 118px;
+    width: 184px;
+    background: url(../../../../degree_off.png);
+    background-position: -411px -26px;
+    position: absolute;
   "></div>
   <div style="position: absolute;" id="viz"></div>
 </div>
@@ -149,13 +152,13 @@ x.range([0, 178])
 </script>
 
 <div style="position: relative; height: 120px;">
-  <div
-style="display: inline-block;
-height: 118px;
-width: 184px;
-background: url(../../../../degree_off.png);
-background-position: -411px -26px;
-position: absolute;
+  <div style="
+    display: inline-block;
+    height: 118px;
+    width: 184px;
+    background: url(../../../../degree_off.png);
+    background-position: -411px -26px;
+    position: absolute;
   "></div>
   <div style="position: absolute;" id="viz2"></div>
 </div>
@@ -191,13 +194,13 @@ data = [
 ]
 </script>
 <div style="position: relative; height: 120px;">
-  <div
-style="display: inline-block;
-height: 118px;
-width: 184px;
-background: url(../../../../degree_off.png);
-background-position: -411px -26px;
-position: absolute;
+  <div style="
+    display: inline-block;
+    height: 118px;
+    width: 184px;
+    background: url(../../../../degree_off.png);
+    background-position: -411px -26px;
+    position: absolute;
   "></div>
   <div style="position: absolute;" id="viz3"></div>
 </div>
