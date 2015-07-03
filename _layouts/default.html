@@ -4,19 +4,30 @@
   {% include head.html %}
 
   <body class="hidden">
+    <!-- Fight FOUT -->
+    <style>
+.hidden {
+    opacity: 0;
+}
+
+.reveal {
+    -webkit-transition: opacity 1s ease-out;  
+    -moz-transition: opacity 1s ease-out; 
+    -o-transition: opacity 1s ease-out;  
+    transition: opacity 1s ease-out;  
+}
+    </style>
     <script>
     var header_font = new FontFace('plainblackwidenormal', "url('/fonts/plainblackwide_normal_macroman/Plain_Black_Wide-webfont.woff') format('woff')")
     header_font.load()
         .then(function(loaded_face) {
             document.fonts.add(loaded_face)
             document.body.className = 'reveal'
-            //d3.select("body").classed({ hidden: false, reveal: true })
         })
         .catch(function(e) {
             // This is where to load backup fonts from the list below
             console.log(e)
             document.body.className = 'reveal'
-            //d3.select("body").classed({ hidden: false, reveal: true })
         })        
 
         //font-family: 'plainblacknormal';
