@@ -1,5 +1,7 @@
 /* Copyright 2015 Christopher Michael Buck */
-var color_distances = (function() {
+!function() {
+    
+    var color_distances = {}
 
     // Assumes colors array is [[24-bit-color, ...],[24-bit-color, ...]...]
 
@@ -18,6 +20,7 @@ var color_distances = (function() {
             far: farther_colors
         }
     }
+    color_distances.get_near_colors = get_near_colors
     
     // Assume colors are in sorted order. If a color is within delta
     function group_colors_by_distance(colors, delta) {
@@ -30,6 +33,7 @@ var color_distances = (function() {
         }
         return results
     }
+    color_distances.group_colors_by_distance = group_colors_by_distance
     
     // Implementation of formula E'' From section 7, The ∆E formula in the RGB space, in:
     // Colour difference ∆E - A survey
@@ -50,8 +54,9 @@ var color_distances = (function() {
         return distance
 
     }
+    color_distances.rgb_distance = rgb_distance
     
-    function test() {
+    color_distances.test = function() {
         var errors = []
         var black = 0
         var red = 256*256*255
@@ -69,10 +74,7 @@ var color_distances = (function() {
         if (rgb_distance(blue, 254) > max_distance*0.01) { errors.push("blues distance weird") }
         return errors
     }
-
-    return {
-       distance: rgb_distance,
-       group: group_colors_by_distance,
-       test: test
-    }
-})()
+    
+    if (typeof define === "function" && define.amd) define(image_util); else if (typeof module === "object" && module.exports) module.exports = color_distances
+    this.color_distances = color_distances
+}()
