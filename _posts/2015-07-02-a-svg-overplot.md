@@ -3,6 +3,7 @@ layout: post
 title: "A SVG Overplot"
 meta: "A Picayune of JavaScript"
 date: 2015-07-02 17:57:01 +05:00
+updated: 2015-07-04 13:40:01 +05:00
 tags: JavaScript
 author: Christopher Michael Buck
 comments: false
@@ -55,4 +56,4 @@ Text with an SVG overlay looks similar:
   </svg>
 </div>
 
-The "height: 30px" style on the outer div is needed because the "position: absolute" blocks are ignored for the flow.
+The "height: 30px" style on the outer div is needed because the "position: absolute" blocks are ignored box model [normal flow](http://dev.w3.org/csswg/css2/visuren.html#normal-flow). For a more thorough treatment of overlays, especially text over images, see Chris Coyier's: [Design Considerations: Text on Images](https://css-tricks.com/design-considerations-text-images/)
