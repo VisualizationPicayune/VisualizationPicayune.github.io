@@ -3,7 +3,7 @@ layout: post
 title: "Infectious Diseases, a Reproduction - part 1"
 meta: "The first in a series of reproductions in D3."
 date: 2015-07-02 17:59:01 +05:00
-updated: 2015-07-03 10:30:00 +05:00
+updated: 2015-07-13 10:30:00 +05:00
 tags: D3 Reproduction XKCD
 author: Christopher Michael Buck
 comments: false
@@ -105,6 +105,15 @@ Let's plot our line as gray over the original plot. See [A SVG Overplot]({% post
         .style("fill","none")
         .style("stroke","gray")
 
+    svg.selectAll("circle")
+        .data(data).enter()
+        .append("circle")
+        .attr("cx", function (d) { return x(d[0]); })
+        .attr("cy", function (d) { return y(d[1]); })
+        .attr("r", "3px")
+        .attr("fill", "white")
+        .attr("stroke", "gray")        
+
 <script>
 
 function plot(where) {    
@@ -122,6 +131,15 @@ function plot(where) {
         .attr("d", line)
         .style("fill","none")
         .style("stroke","gray")
+
+    svg.selectAll("circle")
+        .data(data).enter()
+        .append("circle")
+        .attr("cx", function (d) { return x(d[0]); })
+        .attr("cy", function (d) { return y(d[1]); })
+        .attr("r", "3px")
+        .attr("fill", "white")
+        .attr("stroke", "gray")        
 }
 
 </script>
@@ -209,3 +227,5 @@ plot("#viz3")
 </script>
 
 Not bad, the gray line is far less visible. But manually tuning the data above was tedious. We could have created a overlay grid to help make the estimation more precise and the tuning a bit easier, but it would have still been tedious. If only there was a way to 'read' the graph line to reverse engineer the data. If only. There is, and that's what we'll do in part 2.
+
+Updated 2014-07-13: Add circles at estimation points for clarity.
