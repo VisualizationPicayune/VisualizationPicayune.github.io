@@ -6,7 +6,7 @@ date: 2015-06-11 14:31:01 +05:00
 tags: canvas image
 author: Christopher Michael Buck
 comments: false
-draft: false
+draft: true
 ---
 
 To load an image, and dispatch with [ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData), given a url:
