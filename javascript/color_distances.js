@@ -75,6 +75,22 @@
         return closest
     }
     color_distances.closest_color_fingerprint = closest_color_fingerprint
+
+    function closest_n_color_fingerprints(color_fingerprints, fingerprint, n) {
+        var closest_n = []
+        for (var i = 0; i < n i++) { closest_n.push(0) }
+        var closest_distance = fingerprint_distance(color_fingerprints[0][2], fingerprint)
+        for (var i = 1; i < color_fingerprints.length; i++) {
+            var distance = fingerprint_distance(color_fingerprints[i][2], fingerprint)
+            if (distance < closest_distance) {
+                var dumped = closest_n.shift()
+                closest_n.push(i)
+                closest_distance = distance
+            }
+        }
+        return closest_n
+    }
+    color_distances.closest_n_color_fingerprints = closest_n_color_fingerprints
     
     // Implementation of formula E'' From section 7, The ∆E formula in the RGB space, in:
     // Colour difference ∆E - A survey
