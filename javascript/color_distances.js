@@ -78,17 +78,34 @@
 
     function closest_n_color_fingerprints(color_fingerprints, fingerprint, n) {
         var closest_n = []
-        for (var i = 0; i < n i++) { closest_n.push(0) }
-        var closest_distance = fingerprint_distance(color_fingerprints[0][2], fingerprint)
-        for (var i = 1; i < color_fingerprints.length; i++) {
+        for (var i = 0; i < n; i++) { closest_n.push(0) }
+        var closest_distances = []
+        for (var i = 0; i < n; i++) { closest_distances.push(99999999999999999.0) }
+        for (var i = 0; i < color_fingerprints.length; i++) {
             var distance = fingerprint_distance(color_fingerprints[i][2], fingerprint)
-            if (distance < closest_distance) {
-                var dumped = closest_n.shift()
+            var max = 0
+            for (var j = 1; j < n; j++) {
+                if (closest_distances[j] > closest_distances[max]) {
+                    max = j
+                }
+            }
+            if (distance < closest_distances[max]) {
+                closest_n.splice(max,1)
+                closest_distances.splice(max, 1)
                 closest_n.push(i)
-                closest_distance = distance
+                closest_distances.push(distance)
+                for (var j = 0; j < closest_n.length; j++) {
+                    if (distance > closest_distances[j]) {
+                        closest_n.splice(j, 0, i)
+                        closest_distances.splice(j, 0, distance)
+                        var dump = closest_n.pop()
+                        dump = closest_distances.pop()
+                        j = 999999
+                    }
+                }
             }
         }
-        return closest_n
+        return [closest_n, closest_distances]
     }
     color_distances.closest_n_color_fingerprints = closest_n_color_fingerprints
     
