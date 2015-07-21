@@ -14,29 +14,158 @@
         return pixels.data.subarray(base, base+4)
     }
     
+    image_util.set_pixel = function(pixels, x, y, value) {
+        var width = pixels.width
+        var height = pixels.height
+        var base_y = y * width * 4
+        var base = base_y + x * 4
+        pixels.data[base] = value[0]
+        pixels.data[base+1] = value[1]
+        pixels.data[base+2] = value[2]
+        pixels.data[base+3] = value[3]
+    }
+    
+    image_util.crop = function(pixels, x, y, width, height) {
+        var canvas = document.createElement('canvas')
+        canvas.width=pixels.width
+        canvas.height=pixels.height
+        var context = canvas.getContext('2d')
+        context.putImageData(pixels, 0, 0)
+        var cropped = context.getImageData(x, y, width, height)
+        return cropped
+        //var canvas = image_util.pixels_to_canvas(pixels)
+        //var context = canvas.getContext('2d')
+        //var cropped = context.getImageData(x, y, width, height)
+        //return cropped
+    }
+    
+    // Generate an image of height x width with data points set to transparent black
+    image_util.gen_pixels = function(width, height, color) {
+        //var canvas = document.createElement('canvas')
+        //canvas.width=width
+        //canvas.height=height
+        //var context = canvas.getContext('2d')
+        //var pixels = context.getImageData(0, 0, context.canvas.width, context.canvas.height)
+        var pixels = new ImageData(width, height)
+        if (color) {
+            var image = pixels.data
+            for (var i = 0; i < image.length; i = i + 4) {
+                image[i] = color[0]
+                image[i+1] = color[1]
+                image[i+2] = color[2]
+                image[i+3] = color[3]
+            }
+        }
+        return pixels
+    }
+    
+    function rgb_color_counts(pixels) {
+        var r = []; for (var i = 0; i < 256; i++) { r.push(0) }
+        var g = []; for (var i = 0; i < 256; i++) { g.push(0) }
+        var b = []; for (var i = 0; i < 256; i++) { b.push(0) }
+        var data = pixels.data
+        for (var i  = 0; i < (data.length/4); i = i + 4) {
+            r[data[i]]++
+            g[data[i+1]]++
+            b[data[i+2]]++
+        }
+        return [r, g, b]
+    }
+    image_util.rgb_color_counts = rgb_color_counts
+
+    function rgb_color_counts_black_threshold(pixels, threshold) {
+        var r = []; for (var i = 0; i < 256; i++) { r.push(0) }
+        var g = []; for (var i = 0; i < 256; i++) { g.push(0) }
+        var b = []; for (var i = 0; i < 256; i++) { b.push(0) }
+        var data = pixels.data
+        for (var i  = 0; i < (data.length/4); i = i + 4) {
+            if (data[i] > threshold || data[i+1] > threshold || data[i+2] > threshold) {
+                r[data[i]]++
+                g[data[i+1]]++
+                b[data[i+2]]++
+            }
+        }
+        return [r, g, b]
+    }
+    image_util.rgb_color_counts_black_threshold = rgb_color_counts_black_threshold
+    
+    // http://stackoverflow.com/a/16436975/718291
+    function arrays_equal(a, b) {
+        if (a === b) return true;
+        if (a == null || b == null) return false;
+        if (a.length != b.length) return false;
+
+        for (var i = 0; i < a.length; ++i) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    }
+    image_util.arrays_equal = arrays_equal
+
+    tests.push(function() {
+        var pixels = image_util.gen_pixels(1, 1)
+        return [
+            [ "pixels.width == 1", pixels.width == 1 ],
+            [ "pixels.height == 1", pixels.height == 1 ],
+            [ "pixels.data.length == 4", pixels.data.length == 4 ],
+            [ "arrays_equal(pixels.data, [0,0,0,0])", arrays_equal(pixels.data, [0,0,0,0]) ]
+        ]
+    })
+    tests.push(function() {
+        var pixels = image_util.gen_pixels(1, 1, [255, 255, 255, 0])
+        return [
+            [ "pixels.width == 1", pixels.width == 1 ],
+            [ "pixels.height == 1", pixels.height == 1 ],
+            [ "pixels.data.length == 4", pixels.data.length == 4 ],
+            [ "arrays_equal(pixels.data, [255,255,255,0])", arrays_equal(pixels.data, [255,255,255,0]) ]
+        ]
+    })
+    
     // To load an image, and dispatch with [ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData), given a url:
     // Calls back with ImageData. Caller is likely interested in:
     // .width, .height, and .data 
     image_util.get_image_pixels = function(url, callback) {
-        var image = new Image()
-        image.src = url   // the get request happens here
-
-        // When the request is fulfilled
-        image.onload = function () {
-            // To get at the image data we need to write it to a canvas
-            var canvas = document.createElement('canvas')
-            // Make the canvas the same size as the image so it can hold it exactly
-            canvas.width=image.width
-            canvas.height=image.height
-            // Get the canvas 2d context and write the image
-            var context = canvas.getContext('2d')
-            context.drawImage(image, 0, 0)
-            // Give the context back to the caller
-            var pixels = context.getImageData(0, 0, context.canvas.width, context.canvas.height)
+        var img = document.createElement('img')
+        img.src = src
+        img.crossOrigin = "Anonymous"  // good luck :) CORS needed for crossOrigin image
+        img.onload = function () {
+            var pixels = get_img_element_pixels(img)
             callback(pixels)
         }
     }
 
+    function get_img_element(src, callback) {
+        var img = document.createElement('img')
+        img.src = src
+        img.crossOrigin = "Anonymous"  // good luck :) CORS needed for crossOrigin image
+        img.onload = function () {
+            callback(img)
+        }
+    }
+    image_util.get_img_element = get_img_element
+
+    function get_sized_img_element(src, width, callback) {
+        var img = document.createElement('img')
+        img.width = width
+        img.src = src
+        img.crossOrigin = "Anonymous"  // good luck :) CORS needed for crossOrigin image
+        img.onload = function () {
+            callback(img)
+        }
+    }
+    image_util.get_sized_img_element = get_sized_img_element
+
+    function get_img_element_pixels(img_element) {
+        var canvas = document.createElement('canvas')
+        canvas.width = img_element.width
+        canvas.height = img_element.height
+        var context = canvas.getContext('2d')
+        
+        context.drawImage(img_element, 0, 0, canvas.width, canvas.height)
+        var pixels = context.getImageData(0, 0, context.canvas.width, context.canvas.height)
+        return(pixels)
+    }
+    image_util.get_img_element_pixels = get_img_element_pixels
     
     image_util.gen_count_function = function(start) {
         var s = start || 0
@@ -49,7 +178,6 @@
         }
     }
     
-    tests.push(function() { return [ "true", true ] })
     tests.push(function() {
         var test_count_function = image_util.gen_count_function(10)
         test_count_function.next()
@@ -71,22 +199,31 @@
         my_x_measure_position = x_measure_position  // between these... single thread helps
         createElement
     }
+    */
     
-    image_util.get_text_pixels = function(text, style, callback) {
+    image_util.get_text_pixels = function(text, font, callback) {
+        var canvas = document.createElement('canvas')
+        canvas.width = 20
+        canvas.height = 20
+        // Get the canvas 2d context and write text
+        var context = canvas.getContext('2d')
+        context.font = font
+        context.strokeText(text, 5, 5)
+        var pixels = context.getImageData(0, 0, canvas.width, canvas.height)
         if (callback) {
             callback(pixels)
         } else {
             return pixels
         }
     }
-    */
     
     image_util.get_svg_pixels = function(svg_element, callback) {
         var svgString = new XMLSerializer().serializeToString(svg_element);
         var DOMURL = self.URL || self.webkitURL || self;
         var svg = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
         var url = DOMURL.createObjectURL(svg);
-        get_image_pixels(url, callback)
+        image_util.get_image_pixels(
+        url, callback)
     }
     
     
@@ -109,11 +246,12 @@ img.src = url;
 
     
     image_util.get_pixel_counts = function(data) {
+        // var buffer32 = new Uint32Array(data.buffer)
         var semi_transparent_pixel_count = 0
         var counts = {}
-        // Using a RGB hex color string here. Could use a 24-bit integer and convert on use
         for (var i=0; i < data.length; i = i+4) {
-           var s = 256*256*data[i+0] + 256*data[i+1] + data[i+2]  // R@0, G@1, B@2
+           // Drops colors very near black 1,1,1 2,2,2 3,3,3
+           var s = 0.0 + 256.0*256.0*data[i+0] + 256.0*data[i+1] + data[i+2]  // R@0, G@1, B@2
            if (data[i+3] !== 255) { semi_transparent_pixel_count += 1 }
            counts[s] = (counts[s] | 0) + 1
         }
@@ -183,6 +321,15 @@ img.src = url;
             diff = diff + Math.abs(data_1[i] - data_2[i])
         }
         return(diff)
+    }
+        
+    image_util.pixels_to_canvas = function(pixels) {
+        var canvas = document.createElement('canvas')
+        canvas.width=pixels.width
+        canvas.height=pixels.height
+        var context = canvas.getContext('2d')
+        var pixels = context.putImageData(pixels, 0, 0)
+        return canvas
     }
     
     function get_random_0_255() {

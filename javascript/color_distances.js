@@ -9,7 +9,8 @@
         var near_colors = []
         var farther_colors = []
         candidates.forEach(function(c) {
-            if ( rgb_distance(color[0], c[0]) < delta ) {
+            if ( machine_distance(color[0], c[0]) < delta ) {
+            //if ( rgb_distance(color[0], c[0]) < delta ) {
                 near_colors.push(c) 
             } else {
                 farther_colors.push(c)
@@ -22,7 +23,7 @@
     }
     color_distances.get_near_colors = get_near_colors
     
-    // Assume colors are in sorted order. If a color is within delta
+    // Assume colors are in counted sorted order. If a color is within delta
     function group_colors_by_distance(colors, delta) {
         var results = []
         var split = get_near_colors(colors[0], colors, delta)
@@ -34,6 +35,46 @@
         return results
     }
     color_distances.group_colors_by_distance = group_colors_by_distance
+
+    function group_colors_until_count(colors, count) {
+        var delta = 28.00
+        var delta_delta = 4.00
+        var results = group_colors_by_distance(colors, delta)
+        for (var i = 0; i < 20 && results.length !== count; i++) {
+            if (results.length > count) {
+                delta = delta + delta_delta
+            } else {
+                delta = delta - delta_delta
+            }
+            results = group_colors_by_distance(colors, delta)
+            delta_delta = delta_delta * 0.75 // Tune this
+        }
+        return results
+    }
+    color_distances.group_colors_until_count = group_colors_until_count
+    
+    // Assumes fingerprints are same length
+    function fingerprint_distance( f1, f2 ) {
+        var distance = machine_distance(f1[0], f2[0])
+        for (var i = 1; i < f1.length; i++) {
+            distance = distance + machine_distance(f1[i], f2[i])
+        }
+        return distance
+    }
+    
+    function closest_color_fingerprint(color_fingerprints, fingerprint) {
+        var closest = 0
+        var closest_distance = fingerprint_distance(color_fingerprints[0][2], fingerprint)
+        for (var i = 1; i < color_fingerprints.length; i++) {
+            var distance = fingerprint_distance(color_fingerprints[i][2], fingerprint)
+            if (distance < closest_distance) {
+                closest = i
+                closest_distance = distance
+            }
+        }
+        return closest
+    }
+    color_distances.closest_color_fingerprint = closest_color_fingerprint
     
     // Implementation of formula E'' From section 7, The ∆E formula in the RGB space, in:
     // Colour difference ∆E - A survey
@@ -55,6 +96,21 @@
 
     }
     color_distances.rgb_distance = rgb_distance
+
+
+    function machine_distance( c1, c2 ) {
+        var r1 = c1 >> 16, g1 = (c1 >> 8) % 256, b1 = c1 % 256
+        var r2 = c2 >> 16, g2 = (c2 >> 8) % 256, b2 = c2 % 256
+        
+        var r_component = (r1 - r2) * (r1 - r2)
+        var g_component = (g1 - g2) * (g1 - g2)
+        var b_component = (b1 - b2) * (b1 - b2)
+        var distance = Math.sqrt(r_component + g_component + b_component)
+        
+        return distance
+
+    }
+    color_distances.machine_distance = machine_distance
     
     color_distances.test = function() {
         var errors = []
