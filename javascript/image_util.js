@@ -124,15 +124,20 @@
     // To load an image, and dispatch with [ImageData](https://developer.mozilla.org/en-US/docs/Web/API/ImageData), given a url:
     // Calls back with ImageData. Caller is likely interested in:
     // .width, .height, and .data 
-    image_util.get_image_pixels = function(url, callback) {
+    function get_image_pixels(src, callback) {
+        get_img_element(src, function(img) {
+            var pixels = get_img_element_pixels(img)
+            callback(pixels)           
+        }) /*
         var img = document.createElement('img')
         img.src = src
         img.crossOrigin = "Anonymous"  // good luck :) CORS needed for crossOrigin image
         img.onload = function () {
             var pixels = get_img_element_pixels(img)
             callback(pixels)
-        }
+        } */
     }
+    image_util.get_image_pixels = get_image_pixels
 
     function get_img_element(src, callback) {
         var img = document.createElement('img')
