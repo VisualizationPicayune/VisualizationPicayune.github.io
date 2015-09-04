@@ -28,6 +28,20 @@ function scan_and_label(pixels) {
     return label
 }
 
+function label_to_image(label, width, height) {
+    var colors = [[255, 0, 0], [255, 255, 0], [0, 255, 0], [0, 255, 255], [0, 0, 255], [255, 0, 255]]
+    var pixels = image_util.gen_pixels(width, height)
+    for (var i = 0; i < label.length; i++) {
+        var base = i*4
+        var color = colors[ label[i] % colors.length ]
+        pixels.data[base] = color[0]
+        pixels.data[base+1] = color[1]
+        pixels.data[base+2] = color[2]
+        pixels.data[base+3] = 255
+    }
+    return pixels
+}
+
 // Threshold for interesting pixel. We're detecting darker colors, in particular, a color with a red component under 150.
 // Assume a white background, so a transparent color is less dark. This function works on gray-scale images and when we
 // only care about the red in the image.
@@ -105,15 +119,15 @@ function relabel(pixels, label) {
                 is_right_edge = (e % width == (width - 1))
                 is_bottom_edge = (e + width >= (width * height))
 
-                a = e - width - 1; if (is_left_edge) { a = -1 }
+                a = e - width - 1; if (is_left_edge) { a = e }
                 b = e - width
-                c = e - width + 1; if (is_right_edge) { c = -1 }
-                d = e - 1;         if (is_left_edge) { d = -1 }
+                c = e - width + 1; if (is_right_edge) { c = e }
+                d = e - 1;         if (is_left_edge) { d = e }
     
-                f = e + 1;         if (is_right_edge) { f = -1 }
-                g = e + width - 1; if (is_left_edge || is_bottom_edge) { g = -1 }
-                h = e + width;     if (is_bottom_edge) { h = -1 }
-                i = e + width + 1; if (is_right_edge || is_bottom_edge) { i = -1 }
+                f = e + 1;         if (is_right_edge) { f = e }
+                g = e + width - 1; if (is_left_edge || is_bottom_edge) { g = e }
+                h = e + width;     if (is_bottom_edge) { h = e }
+                i = e + width + 1; if (is_right_edge || is_bottom_edge) { i = e }
             
                 var l = find_minimum_label(label, [a, b, c, d, f, g, h, i])
                 if (l < label[e]) {

@@ -6,6 +6,19 @@
 
     // Pixel by pixel access of canvas with context.getImageData can bring a browser to it's knees. Given all the ImageData from an image like is returned from get_image_pixels, above, return [r,g,b,a] of a particular pixel:
 
+    function get_red(pixels, x, y, out_of_bounds) {
+        var width = pixels.width
+        var height = pixels.height
+        if ( x < 0 || x >= width || y < 0 || y >= height) {
+            return out_of_bounds
+        } else {
+            var base_y = y * width * 4
+            var base = base_y + x * 4
+            return pixels.data[base]
+        }
+    }
+    image_util.get_red = get_red
+
     image_util.get_pixel = function(pixels, x, y) {
         var width = pixels.width
         var height = pixels.height
@@ -126,7 +139,7 @@
     // .width, .height, and .data 
     image_util.get_image_pixels = function(url, callback) {
         var img = document.createElement('img')
-        img.src = src
+        img.src = url
         img.crossOrigin = "Anonymous"  // good luck :) CORS needed for crossOrigin image
         img.onload = function () {
             var pixels = get_img_element_pixels(img)
@@ -212,7 +225,8 @@
         var pixels = context.getImageData(0, 0, canvas.width, canvas.height)
         if (callback) {
             callback(pixels)
-        } else {
+    
+    } else {
             return pixels
         }
     }
@@ -244,6 +258,7 @@ img.onload = function() {
 img.src = url;
     */
 
+    
     
     image_util.get_pixel_counts = function(data) {
         // var buffer32 = new Uint32Array(data.buffer)
@@ -331,7 +346,7 @@ img.src = url;
         var pixels = context.putImageData(pixels, 0, 0)
         return canvas
     }
-    
+        
     function get_random_0_255() {
         return Math.floor(Math.random() * 256)
     }
