@@ -18,7 +18,9 @@
 }
     </style>
     <script>
-    var header_font = new FontFace('plainblackwidenormal', "url('/fonts/plainblackwide_normal_macroman/Plain_Black_Wide-webfont.woff') format('woff')")
+    
+    var header_font = new FontFace('plainblackwidenormal', "url('https://fonts.googleapis.com/css?family=Sonsie+One') format('woff')")
+    //var header_font = new FontFace('plainblackwidenormal', "url('/fonts/plainblackwide_normal_macroman/Plain_Black_Wide-webfont.woff') format('woff')")
     header_font.load()
         .then(function(loaded_face) {
             document.fonts.add(loaded_face)
@@ -30,12 +32,6 @@
             document.body.className = 'reveal'
         })        
 
-        //font-family: 'plainblacknormal';
-        //src: url('Plain_Black-webfont.eot');
-        //src: url('Plain_Black-webfont.eot?#iefix') format('embedded-opentype'),
-        //     url('Plain_Black-webfont.woff') format('woff'),
-        //     url('Plain_Black-webfont.ttf') format('truetype'),
-        //     url('Plain_Black-webfont.svg#plainblacknormal') format('svg');
     </script>
     {% include header.html %}
 
