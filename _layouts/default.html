@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html class="wf-loading">
 
   {% include head.html %}
 
-  <body class="hidden">
+  <body>
     <!-- Fight FOUT -->
     <style>
-.hidden {
+.wf-loading {
     opacity: 0;
 }
 
-.reveal {
+.wf-active *,
+.wf-inactive * {
     -webkit-transition: opacity 1s ease-out;  
     -moz-transition: opacity 1s ease-out; 
     -o-transition: opacity 1s ease-out;  
     transition: opacity 1s ease-out;  
 }
     </style>
-    <script>
-    
-    var header_font = new FontFace('Sonsie One', "url('https://fonts.googleapis.com/css?family=Sonsie+One') format('woff')")
-    header_font.load()
-        .then(function(loaded_face) {
-            document.fonts.add(loaded_face)
-            document.body.className = 'reveal'
-        })
-        .catch(function(e) {
-            // This is where to load backup fonts from the list below
-            console.log(e)
-            document.body.className = 'reveal'
-        })        
-
-    </script>
+    <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Sonsie+One::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
     {% include header.html %}
 
     <div class="page-content">
